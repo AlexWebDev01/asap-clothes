@@ -1,6 +1,6 @@
 import { initializeApp } from 'firebase/app';
 import { getAuth, signInWithRedirect, signInWithPopup, GoogleAuthProvider, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from 'firebase/auth';
-import { getFirestore, doc, getDoc, setDoc } from 'firebase/firestore';
+import { getFirestore, doc, getDoc, setDoc, collection, writeBatch, query, getDocs, } from 'firebase/firestore';
 
 const firebaseConfig = {
     apiKey: "AIzaSyAKv_NA__han2rte4vLsbgXNfI7UAfNmfA",
@@ -25,16 +25,26 @@ export const signInWithGoogleRedirect = () => signInWithRedirect(auth, googlePro
 
 export const dataBase = getFirestore();
 
+export const getCategoriesAndDocuments = async () => {
+    const collectionRef = collection(dataBase, 'categories');
+    const q = query(collectionRef);
+
+    const querySnapshop = await getDocs(q);
+    const categoryMap = querySnapshop.docs.reduce((acc, docSnapshot) => {
+        const { title, items } = docSnapshot.data();
+        acc[title.toLowerCase()] = items;
+        return acc;
+    }, {});
+
+    return categoryMap;
+};
+
 export const createUserDocumentFromAuth = async (userAuth, additionalInformation={}) => {
     if(!userAuth) return;
 
     const userDocRef = doc(dataBase, 'users', userAuth.uid);
 
-    console.log(userDocRef);
-
     const userSnapshot = await getDoc(userDocRef);
-    console.log(userSnapshot);
-    console.log(userSnapshot.exists());
 
     if(!userSnapshot.exists()) {
         const { displayName, email } = userAuth;
