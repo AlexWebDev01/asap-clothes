@@ -13,7 +13,8 @@ import { rootReducer } from './root-reducer';
 const persistConfig = {
     key: 'root',
     storage, //= storage: storage,
-    blacklist: ['user'] //string with types that you don't want to persist (in rootReducer const)
+    whitelist: ['cart'] //string with types that you want to persist (in rootReducer const)
+    //if you don't want to persist some states - change 'whitelist' to 'backlist'
 }
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
