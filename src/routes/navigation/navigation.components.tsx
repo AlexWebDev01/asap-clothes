@@ -12,8 +12,6 @@ import { signOutStart } from "../../store/user/user.action";
 
 import { NavigationContainer, Logo, LogoContainer, NavLinks, NavLink } from './navigation.styles';
 
-import './navigation.styles.jsx';
-
 const Navigation = () => {
   const dispatch = useDispatch();
   const currentUser = useSelector(selectCurrentUser);
