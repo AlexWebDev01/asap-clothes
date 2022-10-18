@@ -54,7 +54,7 @@ const SignInForm = () => {
                     required
                     onChange={handleChange}
                     name = 'email'
-                    value = 'email'
+                    value={email}
                 />
 
                 <FormInput 
@@ -63,13 +63,12 @@ const SignInForm = () => {
                     required
                     onChange={handleChange}
                     name = 'password' 
-                    value = 'password'
+                    value={password}
                 />
                 <ButtonContainer>
                     <Button type='submit'>Sign In</Button>
-                    <Button type='button' buttonType={BUTTON_TYPE_CLASSES.google}onClick={signInWithGoogle}>Google sign In</Button>
-                </ButtonContainer>
-                
+                    <Button type='button' buttonType={BUTTON_TYPE_CLASSES.google} onClick={signInWithGoogle}>Google sign In</Button>
+                </ButtonContainer> 
             </form>
         </SignInContainer>
     );
