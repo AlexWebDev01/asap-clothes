@@ -2,6 +2,32 @@ import styled from 'styled-components';
 import { devices } from '../../breackpoints';
 
 export const ProductCartContainer = styled.div`
+
+@media ${devices.mobileS} {
+  height: auto;
+
+  img {
+    height: 150px;
+  }
+
+  button {
+    min-width: 80px;
+    width: 100px;
+    height: 40px;
+    opacity: 0.85;
+    top: 100px;
+    opacity: 0.75;
+    display: flex;
+    padding: 0;
+    font-size: 12px;
+  }
+
+ hover {
+  none;
+ }
+}
+
+@media ${devices.tablet} {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -35,41 +61,46 @@ export const ProductCartContainer = styled.div`
       display: flex;
     }
   }
-
-  @media ${devices.mobileS} {
-    height: auto;
-
-    img {
-      height: 150px;
-    }
 }
 `;
 
 export const Footer = styled.div`
+
+@media ${devices.mobileS} {
+  height: auto;
+}
+
+@media ${devices.tablet} {
   width: 100%;
   height: 5%;
   display: flex;
   justify-content: space-between;
   font-size: 18px;
+}
 
-  @media ${devices.mobileS} {
-    height: auto;
-  }
 `;
 
 export const Name = styled.span`
-  width: 90%;
 
-  @media ${devices.mobileS} {
-    height: auto;
-    width: auto;
-  }
+@media ${devices.mobileS} {
+  height: auto;
+  width: auto;
+}
+
+@media ${devices.tablet} {
+  width: 90%;
+}
+
 `;
 
 export const Price = styled.span`
-  width: 10%;
 
-  @media ${devices.mobileS} {
-    width: auto;
-  }
+@media ${devices.mobileS} {
+  width: auto;
+}
+
+@media ${devices.tablet} {
+  width: 10%;
+}
+
 `;

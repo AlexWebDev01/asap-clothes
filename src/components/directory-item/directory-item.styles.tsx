@@ -14,6 +14,25 @@ export const BackgroundImage = styled.div<BackgroundImageProps>`
 `;
 
 export const Body = styled.div`
+
+@media ${devices.mobileS} {
+  width: 100px;
+  padding: 0 10px;
+  height: 70px;
+
+  p {
+    margin: 0;
+    font-size: 14px;
+  }
+
+  h2 {
+    margin: 0;
+    font-size: 18px;
+  }
+}
+
+@media ${devices.tablet} {
+  width: auto;
   height: 90px;
   padding: 0 25px;
   display: flex;
@@ -37,18 +56,17 @@ export const Body = styled.div`
     font-weight: lighter;
     font-size: 16px;
   }
-
-  @media ${devices.mobileS} {
-    width: 137px;
-    padding: 0 10px;
-
-    p {
-      margin: 10px 0;
-    }
-  }
+}
+  
 `;
 
 export const DirectoryItemContainer = styled.div`
+  
+@media ${devices.mobileS} {
+  height: 133px;
+}
+
+@media ${devices.tablet} {
   min-width: 30%;
   height: 240px;
   flex: 1 1 auto;
@@ -74,4 +92,5 @@ export const DirectoryItemContainer = styled.div`
       opacity: 0.9;
     }
   }
+}
 `;
