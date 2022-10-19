@@ -7,7 +7,7 @@ import { selectCartTotal } from "../../store/cart/cart.selector";
 import { selectCurrentUser } from "../../store/user/user.selector";
 
 import { BUTTON_TYPE_CLASSES } from '../button/button.component';
-import { PaymentFormContainer, FormContainer, PaymentButton } from "./payment-form.styles";
+import { PaymentFormContainer, FormContainer, PaymentButton, Note } from "./payment-form.styles";
 
 const ifValidCardElement = (card: StripeCardElement | null): card is StripeCardElement => card !== null;
 
@@ -68,6 +68,7 @@ const PaymentForm = () => {
                 <h2>Credit Card Payment: </h2>
                 <CardElement />
                 <PaymentButton isLoading={isProcessingPayment} buttonType={BUTTON_TYPE_CLASSES.inverted}>Pay now</PaymentButton>
+                <Note>*It's a test payment method. Do not provide your card credentials.<br />Test card credentials: 4242 4242 4242 4242 </Note>
             </FormContainer>
         </PaymentFormContainer>
     )

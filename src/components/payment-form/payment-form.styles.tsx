@@ -7,6 +7,7 @@ export const PaymentFormContainer = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    margin-bottom: 50px;
 `
 
 export const FormContainer = styled.form`
@@ -17,4 +18,10 @@ export const FormContainer = styled.form`
 export const PaymentButton = styled(Button)`
     margin-left: auto;
     margin-top: 30px;
+    margin-bottom: 30px;
+`
+
+export const Note = styled.span`
+   font-size: 14px;
+   color: #767676;
 `
