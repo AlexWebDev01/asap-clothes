@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { devices } from '../../breackpoints';
 
 type BackgroundImageProps = {
   imageUrl: string;
@@ -23,6 +24,7 @@ export const Body = styled.div`
   background-color: white;
   opacity: 0.7;
   position: absolute;
+
   h2 {
     font-weight: bold;
     margin: 0 6px 0;
@@ -30,9 +32,19 @@ export const Body = styled.div`
     color: #4a4a4a;
     text-transform: uppercase;
   }
+
   p {
     font-weight: lighter;
     font-size: 16px;
+  }
+
+  @media ${devices.mobileS} {
+    width: 137px;
+    padding: 0 10px;
+
+    p {
+      margin: 10px 0;
+    }
   }
 `;
 

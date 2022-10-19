@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { devices } from '../../breackpoints';
 
 export const ProductCartContainer = styled.div`
   width: 100%;
@@ -7,6 +8,7 @@ export const ProductCartContainer = styled.div`
   height: 350px;
   align-items: center;
   position: relative;
+  margin-bottom: 15px;
 
   img {
     width: 100%;
@@ -33,6 +35,14 @@ export const ProductCartContainer = styled.div`
       display: flex;
     }
   }
+
+  @media ${devices.mobileS} {
+    height: auto;
+
+    img {
+      height: 150px;
+    }
+}
 `;
 
 export const Footer = styled.div`
@@ -41,13 +51,25 @@ export const Footer = styled.div`
   display: flex;
   justify-content: space-between;
   font-size: 18px;
+
+  @media ${devices.mobileS} {
+    height: auto;
+  }
 `;
 
 export const Name = styled.span`
   width: 90%;
-  margin-bottom: 15px;
+
+  @media ${devices.mobileS} {
+    height: auto;
+    width: auto;
+  }
 `;
 
 export const Price = styled.span`
   width: 10%;
+
+  @media ${devices.mobileS} {
+    width: auto;
+  }
 `;

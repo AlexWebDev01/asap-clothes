@@ -14,9 +14,7 @@ type CategoryPreviewProps = {
 const CategoryPreview: FC<CategoryPreviewProps> = ({ title, products }) => {
     return (
         <CategoryPreviewContainer>
-            <h2>
-                <Title to={title}>{title.toUpperCase()}</Title>
-            </h2>
+            <Title to={title}>{title.toUpperCase()}</Title>
             <Preview>
                 {products
                     .filter((_, idx) => idx < 4)

@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { devices } from '../../breackpoints';
 
 export const NavigationContainer = styled.div `
     height: 70px;
@@ -18,6 +19,10 @@ export const LogoContainer = styled(Link) `
   height: 100%;
   width: 70px;
   padding: 25px;
+
+  @media ${devices.mobileS} {
+    padding: 10px;
+  }
 `
 
 export const NavLinks = styled.div`
@@ -31,5 +36,9 @@ export const NavLinks = styled.div`
 export const NavLink = styled(Link)`
   padding: 10px 15px;
   cursor: pointer;
+
+  @media ${devices.mobileS} {
+    padding: 5px 10px;
+  }
 `
   
