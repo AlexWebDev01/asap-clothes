@@ -8,7 +8,6 @@ const Home = () => {
         <Outlet />
         <Directory /> 
     </div>
-    
   );
 }
 
