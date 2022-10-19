@@ -36,7 +36,7 @@ export function* signInWithGoogle() {
     }
 }
 
-export function* signInWithEmail({ payload: { email, password } }: EmailSignInStart) {
+export function* signInWithEmail({ payload: { email, password }, }: EmailSignInStart) {
     try {
         const userCredential = yield* call(signInAuthUserWithEmailAndPassword, email, password);
 
