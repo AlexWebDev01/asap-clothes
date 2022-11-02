@@ -5,6 +5,8 @@ import { devices } from '../../breackpoints';
 export const NavigationContainer = styled.div `
 
 @media ${devices.mobileS} {
+  display: flex;
+  justify-content: space-between;
   margin-bottom: 10px;
 }
 
@@ -40,14 +42,14 @@ export const LogoContainer = styled(Link) `
 export const NavLinks = styled.div`
 
 @media ${devices.mobileS} {
+  display: flex;
+  align-items: center;
   width: auto;
 }
 
 @media ${devices.tablet} {
   width: 50%;
   height: 100%;
-  display: flex;
-  align-items: center;
   justify-content: flex-end;
 }
 
