@@ -17,17 +17,26 @@ export const Body = styled.div`
 
 @media ${devices.mobileS} {
   width: 100px;
-  padding: 0 10px;
-  height: 70px;
-
-  p {
-    margin: 0;
-    font-size: 14px;
-  }
+  position: relative;
+  top: -100px;
+  text-align: center;
+  padding: 10px 10px;
+  background-color: white;
+  opacity: 0.7;
+  margin: 0 auto;
 
   h2 {
-    margin: 0;
+    font-weight: bold;
     font-size: 18px;
+    color: #4a4a4a;
+    text-transform: uppercase;
+    margin: 0;
+  }
+
+  p {
+    font-weight: lighter;
+    font-size: 14px;
+    margin: 0;
   }
 }
 
@@ -64,6 +73,9 @@ export const DirectoryItemContainer = styled.div`
   
 @media ${devices.mobileS} {
   height: 133px;
+  padding: 0 1em;
+  margin-bottom: 50px;
+  width: 50%;
 }
 
 @media ${devices.tablet} {

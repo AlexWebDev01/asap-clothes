@@ -20,8 +20,8 @@ const DirectoryItem: FC<DirectoryItemProps> = ({ category }) => {
         <DirectoryItemContainer onClick={onNavigateHandler}>
             <BackgroundImage imageUrl={imageUrl} />
             <Body>
-            <h2>{title}</h2>
-            <p>Shop Now</p>
+                <h2>{title}</h2>
+                <p>Shop Now</p>
             </Body>
         </DirectoryItemContainer>
     )
