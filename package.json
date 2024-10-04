@@ -6,10 +6,10 @@
   "scripts": {
     "start": "vite preview",
     "start:dev": "vite dev",
-    "build": "vite build",
-    "test": "react-scripts test"
+    "build": "vite build"
   },
   "dependencies": {
+    "@netlify/functions": "^2.8.2",
     "@stripe/react-stripe-js": "^2.8.0",
     "@stripe/stripe-js": "^4.6.0",
     "dotenv": "^16.4.5",

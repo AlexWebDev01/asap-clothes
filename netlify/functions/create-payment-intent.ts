@@ -1,9 +1,24 @@
+import { Handler } from "@netlify/functions";
 import Stripe from "stripe";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string);
 
-exports.handler = async (event) => {
+const handler: Handler = async (event) => {
   try {
+    if (event.httpMethod !== "POST") {
+      return {
+        statusCode: 405,
+        body: JSON.stringify({ message: "Method Not Allowed" }),
+      };
+    }
+
+    if (!event.body) {
+      return {
+        statusCode: 400,
+        body: JSON.stringify({ message: "Missing request body" }),
+      };
+    }
+
     const { amount } = JSON.parse(event.body);
 
     const paymentIntent = await stripe.paymentIntents.create({
@@ -20,8 +35,10 @@ exports.handler = async (event) => {
     console.log({ error });
 
     return {
-      status: 400,
-      body: JSON.stringify({ error }),
+      statusCode: 500,
+      body: JSON.stringify({ message: "Internal Server Error" }),
     };
   }
 };
+
+export { handler };

@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import { devices } from '../../breackpoints';
+import styled from "styled-components";
+import { devices } from "../../breackpoints";
 
 export const ProductCartContainer = styled.div`
 
@@ -65,42 +65,36 @@ export const ProductCartContainer = styled.div`
 `;
 
 export const Footer = styled.div`
+  @media ${devices.mobileS} {
+    height: auto;
+  }
 
-@media ${devices.mobileS} {
-  height: auto;
-}
-
-@media ${devices.tablet} {
-  width: 100%;
-  height: 5%;
-  display: flex;
-  justify-content: space-between;
-  font-size: 18px;
-}
-
+  @media ${devices.tablet} {
+    width: 100%;
+    height: 5%;
+    display: flex;
+    justify-content: space-between;
+    font-size: 18px;
+  }
 `;
 
 export const Name = styled.span`
+  @media ${devices.mobileS} {
+    height: auto;
+    width: auto;
+  }
 
-@media ${devices.mobileS} {
-  height: auto;
-  width: auto;
-}
-
-@media ${devices.tablet} {
-  width: 90%;
-}
-
+  @media ${devices.tablet} {
+    width: 90%;
+  }
 `;
 
 export const Price = styled.span`
+  @media ${devices.mobileS} {
+    width: auto;
+  }
 
-@media ${devices.mobileS} {
-  width: auto;
-}
-
-@media ${devices.tablet} {
-  width: 10%;
-}
-
+  @media ${devices.tablet} {
+    width: 10%;
+  }
 `;

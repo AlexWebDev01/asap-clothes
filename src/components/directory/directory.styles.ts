@@ -10,10 +10,7 @@ export const DirectoryContainer = styled.div`
   }
 
   @media ${devices.tablet} {
-    width: 100%;
-    flex-wrap: wrap;
     flex-direction: row;
     justify-content: space-between;
-    border: 1px solid red;
   }
 `;

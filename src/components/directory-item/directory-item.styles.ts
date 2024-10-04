@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import { devices } from '../../breackpoints';
+import styled from "styled-components";
+import { devices } from "../../breackpoints";
 
 type BackgroundImageProps = {
   imageUrl: string;
@@ -14,95 +14,97 @@ export const BackgroundImage = styled.div<BackgroundImageProps>`
 `;
 
 export const Body = styled.div`
+  @media ${devices.mobileS} {
+    width: 100px;
+    position: relative;
+    top: -100px;
+    text-align: center;
+    padding: 10px 10px;
+    background-color: white;
+    opacity: 0.7;
+    margin: 0 auto;
 
-@media ${devices.mobileS} {
-  width: 100px;
-  position: relative;
-  top: -100px;
-  text-align: center;
-  padding: 10px 10px;
-  background-color: white;
-  opacity: 0.7;
-  margin: 0 auto;
+    h2 {
+      font-weight: bold;
+      font-size: 18px;
+      color: #4a4a4a;
+      text-transform: uppercase;
+      margin: 0;
+    }
 
-  h2 {
-    font-weight: bold;
-    font-size: 18px;
-    color: #4a4a4a;
-    text-transform: uppercase;
-    margin: 0;
+    p {
+      font-weight: lighter;
+      font-size: 14px;
+      margin: 0;
+    }
   }
 
-  p {
-    font-weight: lighter;
-    font-size: 14px;
-    margin: 0;
-  }
-}
+  @media ${devices.tablet} {
+    width: auto;
+    height: 90px;
+    padding: 0 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid black;
+    background-color: white;
+    opacity: 0.7;
+    position: absolute;
+    top: 70px;
 
-@media ${devices.tablet} {
-  width: auto;
-  height: 90px;
-  padding: 0 25px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid black;
-  background-color: white;
-  opacity: 0.7;
-  position: absolute;
+    h2 {
+      font-weight: bold;
+      margin: 0 6px 0;
+      font-size: 22px;
+      color: #4a4a4a;
+      text-transform: uppercase;
+    }
 
-  h2 {
-    font-weight: bold;
-    margin: 0 6px 0;
-    font-size: 22px;
-    color: #4a4a4a;
-    text-transform: uppercase;
+    p {
+      font-weight: lighter;
+      font-size: 16px;
+    }
   }
-
-  p {
-    font-weight: lighter;
-    font-size: 16px;
-  }
-}
-  
 `;
 
 export const DirectoryItemContainer = styled.div`
-  
-@media ${devices.mobileS} {
-  height: 133px;
-  padding: 0 1em;
-  margin-bottom: 50px;
-  width: 50%;
-}
+  @media ${devices.mobileS} {
+    height: 133px;
+    padding: 0 1em;
+    margin-bottom: 50px;
+    width: 50%;
+  }
 
-@media ${devices.tablet} {
-  min-width: 30%;
-  height: 240px;
-  flex: 1 1 auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid black;
-  margin: 0 7.5px 15px;
-  overflow: hidden;
-  &:first-child {
-    margin-right: 7.5px;
-  }
-  &:last-child {
-    margin-left: 7.5px;
-  }
-  &:hover {
-    cursor: pointer;
-    ${BackgroundImage} {
-      transform: scale(1.1);
-      transition: transform 6s cubic-bezier(0.25, 0.45, 0.45, 0.95);
+  @media ${devices.tablet} {
+    width: 47.5%;
+    height: 240px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid black;
+    margin: 0 7.5px 15px;
+    overflow: hidden;
+    padding: 0;
+    position: relative;
+
+    &:last-of-type {
+      width: 100%;
     }
-    ${Body} {
-      opacity: 0.9;
+
+    &:hover {
+      cursor: pointer;
+      ${BackgroundImage} {
+        transform: scale(1.1);
+        transition: transform 6s cubic-bezier(0.25, 0.45, 0.45, 0.95);
+      }
+      ${Body} {
+        opacity: 0.9;
+      }
     }
   }
-}
+
+  @media ${devices.laptop} {
+    width: 48%;
+  }
 `;

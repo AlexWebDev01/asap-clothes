@@ -154,3 +154,8 @@ export const getCurrentUser = (): Promise<User | null> => {
     );
   });
 };
+
+export const AUTH_ERROR_MESSAGES = Object.freeze({
+  "auth/user-not-found": "Provided email is not registered",
+  "auth/wrong-password": "Provided credentials are invalid",
+});

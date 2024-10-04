@@ -1,3 +1,9 @@
 # Welcome to the ASAP clothes online store!
 
-# Here is the link: https://visionary-rugelach-771c34.netlify.app/
+## Netlify functions local usage
+
+# Install or update the Netlify CLI
+npm install netlify-cli -g
+
+# Start Netlify Dev
+netlify dev

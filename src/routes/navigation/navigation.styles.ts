@@ -3,8 +3,6 @@ import { Link } from "react-router-dom";
 import { devices } from "../../breackpoints";
 import AsapLogo from "../../assets/asap.svg?react";
 
-console.log("AsapLogo Type:", typeof AsapLogo);
-
 export const NavigationContainer = styled.div`
   @media ${devices.mobileS} {
     display: flex;

@@ -1,14 +1,7 @@
 import { AnyAction } from "redux";
 
-import {
-  signInFailed,
-  signUpFailed,
-  signOutFailed,
-  signOutSuccess,
-  signInSuccess,
-} from "./user.action";
-
 import { UserData } from "../../utils/firebase/firebase.utils";
+import { USER_ACTION_TYPES } from "./user.types";
 
 export type UserState = {
   readonly currentUser: UserData | null;
@@ -25,22 +18,31 @@ const INITIAL_STATE: UserState = {
 export const userReducer = (
   state = INITIAL_STATE,
   action = {} as AnyAction
-) => {
-  if (signInSuccess.match(action)) {
-    return { ...state, currentUser: action.payload };
-  }
+): UserState => {
+  switch (action.type) {
+    case USER_ACTION_TYPES.SIGN_UP_START:
+    case USER_ACTION_TYPES.EMAIL_SIGN_IN_START:
+    case USER_ACTION_TYPES.GOOGLE_SIGN_IN_START:
+      return { ...state, isLoading: true, error: null };
 
-  if (signOutSuccess.match(action)) {
-    return { ...state, currentUser: null };
-  }
+    case USER_ACTION_TYPES.SIGN_IN_SUCCESS:
+    case USER_ACTION_TYPES.SIGN_UP_SUCCESS:
+      return {
+        ...state,
+        currentUser: action.payload,
+        isLoading: false,
+        error: null,
+      };
 
-  if (
-    signInFailed.match(action) ||
-    signUpFailed.match(action) ||
-    signOutFailed.match(action)
-  ) {
-    return { ...state, error: action.payload };
-  }
+    case USER_ACTION_TYPES.SIGN_OUT_SUCCESS:
+      return { ...state, currentUser: null };
 
-  return state;
+    case USER_ACTION_TYPES.SIGN_IN_FAILED:
+    case USER_ACTION_TYPES.SIGN_UP_FAILED:
+    case USER_ACTION_TYPES.SIGN_OUT_FAILED:
+      return { ...state, error: action.payload, isLoading: false };
+
+    default:
+      return state;
+  }
 };
