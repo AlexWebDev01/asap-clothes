@@ -26,7 +26,7 @@ import {
 import { Category } from "../../store/categories/category.types";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAKv_NA__han2rte4vLsbgXNfI7UAfNmfA",
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
   authDomain: "asap-clothes.firebaseapp.com",
   projectId: "asap-clothes",
   storageBucket: "asap-clothes.appspot.com",

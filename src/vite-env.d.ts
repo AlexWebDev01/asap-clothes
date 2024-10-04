@@ -6,6 +6,7 @@ interface ImportMetaEnv {
   readonly VITE_NODE_ENV: string;
   readonly VITE_STRIPE_SECRET_KEY: string;
   readonly VITE_REACT_APP_STRIPE_PUBLISHABLE_KEY: string;
+  readonly VITE_FIREBASE_API_KEY: string;
 }
 
 interface ImportMeta {
