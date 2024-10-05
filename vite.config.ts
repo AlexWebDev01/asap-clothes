@@ -38,6 +38,7 @@ export default defineConfig({
           stripe: ['stripe'],
           firebase: ['firebase/app'],
           firestore: ['firebase/firestore'],
+          auth: ['firebase/auth'],
         },
       },
     },
