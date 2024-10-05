@@ -2,11 +2,21 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import svgr from 'vite-plugin-svgr';
 import circleDependency from 'vite-plugin-circular-dependency';
+// import { visualizer } from 'rollup-plugin-visualizer';
 import path from 'path';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react(), svgr(), circleDependency({ circleImportThrowErr: false })],
+  plugins: [
+    react(),
+    svgr(),
+    circleDependency({ circleImportThrowErr: false }),
+    // visualizer({
+    //   open: true,
+    //   gzipSize: true,
+    //   brotliSize: true,
+    // }),
+  ],
   resolve: {
     alias: {
       '@assets': path.resolve(__dirname, './src/assets'),
@@ -26,6 +36,8 @@ export default defineConfig({
           react: ['react', 'react-dom', 'react-router-dom'],
           styledComponents: ['styled-components'],
           stripe: ['stripe'],
+          firebase: ['firebase/app'],
+          firestore: ['firebase/firestore'],
         },
       },
     },
