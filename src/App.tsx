@@ -14,6 +14,7 @@ const Navigation = lazy(
 );
 const Shop = lazy(() => import('./routes/shop/shop.component'));
 const Checkout = lazy(() => import('./routes/checkout/checkout.component'));
+const Payment = lazy(() => import('./routes/payment/payment.component'));
 
 const App = () => {
   const dispatch = useDispatch();
@@ -30,6 +31,7 @@ const App = () => {
           <Route path="shop/*" element={<Shop />} />
           <Route path="auth" element={<Authentication />} />
           <Route path="checkout" element={<Checkout />} />
+          <Route path="payment" element={<Payment />} />
         </Route>
       </Routes>
     </Suspense>

@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 import { SpinnerContainer } from '../spinner/spinner.styles';
+import { devices } from '../../breackpoints';
 
 export const BaseButton = styled.button`
   min-width: 165px;
@@ -25,6 +26,18 @@ export const BaseButton = styled.button`
     color: black;
     border: 1px solid black;
   }
+
+  @media ${devices.laptop} {
+    &:active {
+      transform: scale(0.95);
+    }
+
+    &:disabled {
+      &:active {
+        transform: none;
+      }
+    }
+  }
 `;
 
 export const GoogleSigniInButton = styled(BaseButton)`
@@ -36,6 +49,7 @@ export const GoogleSigniInButton = styled(BaseButton)`
     border: none;
   }
 `;
+
 export const InvertedButton = styled(BaseButton)`
   background-color: white;
   color: black;
@@ -45,6 +59,16 @@ export const InvertedButton = styled(BaseButton)`
     background-color: black;
     color: white;
     border: none;
+  }
+
+  &:disabled {
+    background-color: #999;
+
+    &:hover {
+      background-color: #999;
+      color: black;
+      border: 1px solid black;
+    }
   }
 `;
 
