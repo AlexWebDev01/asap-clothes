@@ -4,8 +4,7 @@ import { devices } from '../../breackpoints';
 
 export const CategoryPreviewContainer = styled.div`
   @media ${devices.mobileS} {
-      
-    h2{
+    h2 {
       margin-top: 0;
     }
   }
@@ -13,23 +12,20 @@ export const CategoryPreviewContainer = styled.div`
   display: flex;
   flex-direction: column;
   margin-bottom: 30px;
-`
+`;
 
 export const Title = styled(Link)`
-@media ${devices.mobileS} {
-  margin-right: auto;
-}
+  @media ${devices.mobileS} {
+    margin-right: auto;
+  }
 
-@media ${devices.tablet} {
-  font-size: 28px;
-  margin-bottom: 25px;
-  cursor: pointer;
-  text-decoration: underline;
-}
-  
-
-  
-`
+  @media ${devices.tablet} {
+    font-size: 28px;
+    margin-bottom: 25px;
+    cursor: pointer;
+    text-decoration: underline;
+  }
+`;
 
 export const Preview = styled.div`
   @media ${devices.mobileS} {
@@ -41,5 +37,4 @@ export const Preview = styled.div`
     grid-template-columns: repeat(4, 1fr);
     column-gap: 20px;
   }
-
-`
+`;

@@ -1,27 +1,27 @@
-import { useState, FormEvent, ChangeEvent, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useState, FormEvent, ChangeEvent, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
-import FormInput from "../form-input/form-input.components";
-import Button, { BUTTON_TYPE_CLASSES } from "../button/button.component";
+import FormInput from '../form-input/form-input.components';
+import Button, { BUTTON_TYPE_CLASSES } from '../button/button.component';
 
 import {
   googleSignInStart,
   emailSignInStart,
-} from "../../store/user/user.action";
+} from '../../store/user/user.action';
 
 import {
   SignInContainer,
   ButtonContainer,
   ErrorContainer,
-} from "./sign-in-form.styles";
-import { useNavigate } from "react-router-dom";
-import { RootState } from "../../store/store";
-import { AUTH_ERROR_MESSAGES } from "../../utils/firebase/firebase.utils";
-import { FirebaseError } from "firebase/app";
+} from './sign-in-form.styles';
+import { useNavigate } from 'react-router-dom';
+import { RootState } from '../../store/store';
+import { AUTH_ERROR_MESSAGES } from '../../utils/firebase/firebase.utils';
+import { FirebaseError } from 'firebase/app';
 
 const defaultFormFields = {
-  email: "",
-  password: "",
+  email: '',
+  password: '',
 };
 
 const SignInForm = () => {
@@ -35,7 +35,7 @@ const SignInForm = () => {
 
   useEffect(() => {
     if (currentUser) {
-      navigate("/");
+      navigate('/');
     }
   });
 
@@ -54,7 +54,7 @@ const SignInForm = () => {
       dispatch(emailSignInStart(email, password));
       resetFormFields();
     } catch (error) {
-      console.log("user sign in failed", error);
+      console.log('user sign in failed', error);
     }
   };
 
@@ -100,7 +100,7 @@ const SignInForm = () => {
           <ErrorContainer>
             {AUTH_ERROR_MESSAGES[
               (error as FirebaseError).code as keyof typeof AUTH_ERROR_MESSAGES
-            ] ?? "Something went wrong"}
+            ] ?? 'Something went wrong'}
           </ErrorContainer>
         )}
       </form>

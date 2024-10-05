@@ -1,14 +1,14 @@
-import { compose, applyMiddleware, Middleware } from "redux";
-import { persistStore, persistReducer, PersistConfig } from "redux-persist";
-import storage from "redux-persist/lib/storage";
-import logger from "redux-logger";
-import createSagaMiddleware from "@redux-saga/core";
+import { compose, applyMiddleware, Middleware } from 'redux';
+import { persistStore, persistReducer, PersistConfig } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
+import logger from 'redux-logger';
+import createSagaMiddleware from '@redux-saga/core';
 
-import { rootSaga } from "./root-saga";
+import { rootSaga } from './root-saga';
 
-import { legacy_createStore as createStore } from "redux";
+import { legacy_createStore as createStore } from 'redux';
 
-import { rootReducer } from "./root-reducer";
+import { rootReducer } from './root-reducer';
 
 export type RootState = ReturnType<typeof rootReducer>;
 
@@ -23,9 +23,9 @@ type ExtendedPersistConfig = PersistConfig<RootState> & {
 };
 
 const persistConfig: ExtendedPersistConfig = {
-  key: "root",
+  key: 'root',
   storage, //= storage: storage,
-  whitelist: ["cart"], //string with types that you want to persist (in rootReducer const)
+  whitelist: ['cart'], //string with types that you want to persist (in rootReducer const)
   //if you don't want to persist some states - change 'whitelist' to 'backlist'
 };
 
@@ -34,7 +34,7 @@ const sagaMiddleware = createSagaMiddleware();
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 const middleWares: Middleware[] = [
-  ...(import.meta.env.VITE_NODE_ENV !== "production"
+  ...(import.meta.env.VITE_NODE_ENV !== 'production'
     ? [logger as Middleware]
     : []),
   sagaMiddleware,
@@ -42,7 +42,7 @@ const middleWares: Middleware[] = [
 
 //Allow Redux devtool Chrome extension. If there is no Redux devtools - uses standart compose.
 const composeEnhancer =
-  (import.meta.env.VITE_NODE_ENV !== "production" &&
+  (import.meta.env.VITE_NODE_ENV !== 'production' &&
     window &&
     window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) ||
   compose;
@@ -52,7 +52,7 @@ const composedEnhancers = composeEnhancer(applyMiddleware(...middleWares));
 export const store = createStore(
   persistedReducer,
   undefined,
-  composedEnhancers
+  composedEnhancers,
 );
 
 sagaMiddleware.run(rootSaga);

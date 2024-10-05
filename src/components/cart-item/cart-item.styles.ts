@@ -9,7 +9,7 @@ export const CartItemContainer = styled.div`
   img {
     width: 30%;
   }
-`
+`;
 export const ItemDetails = styled.div`
   width: 70%;
   display: flex;
@@ -21,4 +21,4 @@ export const ItemDetails = styled.div`
   span {
     font-size: 16px;
   }
-`
+`;

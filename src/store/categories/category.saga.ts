@@ -1,15 +1,15 @@
-import { takeLatest, all, put, call } from "redux-saga/effects";
+import { takeLatest, all, put, call } from 'redux-saga/effects';
 
-import { getCategoriesAndDocuments } from "../../utils/firebase/firebase.utils";
+import { getCategoriesAndDocuments } from '../../utils/firebase/firebase.utils';
 
 import {
   fetchCategoriesSuccess,
   fetchCategoriesFailed,
-} from "./category.action";
+} from './category.action';
 
-import { CATEGORIES_ACTION_TYPES } from "./category.types";
+import { CATEGORIES_ACTION_TYPES } from './category.types';
 
-import { Category } from "./category.types";
+import { Category } from './category.types';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function* fetchCategoriesAsync(): Generator<any, void, Category[]> {
@@ -24,7 +24,7 @@ export function* fetchCategoriesAsync(): Generator<any, void, Category[]> {
 export function* onFetchCategories() {
   yield takeLatest(
     CATEGORIES_ACTION_TYPES.FETCH_CATEGORIES_START,
-    fetchCategoriesAsync
+    fetchCategoriesAsync,
   );
 }
 

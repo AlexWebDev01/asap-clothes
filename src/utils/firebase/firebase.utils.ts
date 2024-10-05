@@ -1,4 +1,4 @@
-import { initializeApp } from "firebase/app";
+import { initializeApp } from 'firebase/app';
 import {
   getAuth,
   signInWithRedirect,
@@ -10,7 +10,7 @@ import {
   onAuthStateChanged,
   User,
   NextOrObserver,
-} from "firebase/auth";
+} from 'firebase/auth';
 import {
   getFirestore,
   doc,
@@ -21,17 +21,17 @@ import {
   query,
   getDocs,
   QueryDocumentSnapshot,
-} from "firebase/firestore";
+} from 'firebase/firestore';
 
-import { Category } from "../../store/categories/category.types";
+import { Category } from '../../store/categories/category.types';
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
-  authDomain: "asap-clothes.firebaseapp.com",
-  projectId: "asap-clothes",
-  storageBucket: "asap-clothes.appspot.com",
-  messagingSenderId: "646213844758",
-  appId: "1:646213844758:web:bf0af4e05d170c098eda37",
+  authDomain: 'asap-clothes.firebaseapp.com',
+  projectId: 'asap-clothes',
+  storageBucket: 'asap-clothes.appspot.com',
+  messagingSenderId: '646213844758',
+  appId: '1:646213844758:web:bf0af4e05d170c098eda37',
 };
 
 // Initialize Firebase
@@ -39,7 +39,7 @@ initializeApp(firebaseConfig);
 
 const googleProvider = new GoogleAuthProvider();
 googleProvider.setCustomParameters({
-  prompt: "select_account",
+  prompt: 'select_account',
 });
 
 export const auth = getAuth();
@@ -56,7 +56,7 @@ export type ObjectsToAdd = {
 
 export const addCollectionAndDocuments = async <T extends ObjectsToAdd>(
   collectionKey: string,
-  objectsToAdd: T[]
+  objectsToAdd: T[],
 ): Promise<void> => {
   const collectionRef = collection(dataBase, collectionKey);
   const batch = writeBatch(dataBase);
@@ -67,16 +67,16 @@ export const addCollectionAndDocuments = async <T extends ObjectsToAdd>(
   });
 
   await batch.commit();
-  console.log("done");
+  console.log('done');
 };
 
 export const getCategoriesAndDocuments = async (): Promise<Category[]> => {
-  const collectionRef = collection(dataBase, "categories");
+  const collectionRef = collection(dataBase, 'categories');
   const q = query(collectionRef);
 
   const querySnapshot = await getDocs(q);
   return querySnapshot.docs.map(
-    (docSnapshot) => docSnapshot.data() as Category
+    (docSnapshot) => docSnapshot.data() as Category,
   );
 };
 
@@ -92,11 +92,11 @@ export type UserData = {
 
 export const createUserDocumentFromAuth = async (
   userAuth: User,
-  additionalInformation = {} as AdditionalInformation
+  additionalInformation = {} as AdditionalInformation,
 ): Promise<void | QueryDocumentSnapshot<UserData>> => {
   if (!userAuth) return;
 
-  const userDocRef = doc(dataBase, "users", userAuth.uid);
+  const userDocRef = doc(dataBase, 'users', userAuth.uid);
 
   const userSnapshot = await getDoc(userDocRef);
 
@@ -112,7 +112,7 @@ export const createUserDocumentFromAuth = async (
         ...additionalInformation,
       });
     } catch (error) {
-      console.log("error creating the user", error);
+      console.log('error creating the user', error);
     }
   }
 
@@ -121,7 +121,7 @@ export const createUserDocumentFromAuth = async (
 
 export const createAuthUserWithEmailAndPassword = async (
   email: string,
-  password: string
+  password: string,
 ) => {
   if (!email || !password) return;
 
@@ -130,7 +130,7 @@ export const createAuthUserWithEmailAndPassword = async (
 
 export const signInAuthUserWithEmailAndPassword = async (
   email: string,
-  password: string
+  password: string,
 ) => {
   if (!email || !password) return;
 
@@ -150,12 +150,12 @@ export const getCurrentUser = (): Promise<User | null> => {
         unsubscribe();
         resolve(userAuth);
       },
-      reject
+      reject,
     );
   });
 };
 
 export const AUTH_ERROR_MESSAGES = Object.freeze({
-  "auth/user-not-found": "Provided email is not registered",
-  "auth/wrong-password": "Provided credentials are invalid",
+  'auth/user-not-found': 'Provided email is not registered',
+  'auth/wrong-password': 'Provided credentials are invalid',
 });

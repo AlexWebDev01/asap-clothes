@@ -1,7 +1,7 @@
-import { AnyAction } from "redux";
+import { AnyAction } from 'redux';
 
-import { UserData } from "../../utils/firebase/firebase.utils";
-import { USER_ACTION_TYPES } from "./user.types";
+import { UserData } from '../../utils/firebase/firebase.utils';
+import { USER_ACTION_TYPES } from './user.types';
 
 export type UserState = {
   readonly currentUser: UserData | null;
@@ -17,7 +17,7 @@ const INITIAL_STATE: UserState = {
 
 export const userReducer = (
   state = INITIAL_STATE,
-  action = {} as AnyAction
+  action = {} as AnyAction,
 ): UserState => {
   switch (action.type) {
     case USER_ACTION_TYPES.SIGN_UP_START:

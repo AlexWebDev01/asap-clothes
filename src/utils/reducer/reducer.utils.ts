@@ -1,17 +1,17 @@
-import { AnyAction } from "redux";
+import { AnyAction } from 'redux';
 
 type Matchable<AC extends () => AnyAction> = AC & {
-  type: ReturnType<AC>["type"];
+  type: ReturnType<AC>['type'];
   match(action: AnyAction): action is ReturnType<AC>;
 };
 
 export function withMatcher<AC extends () => AnyAction & { type: string }>(
-  actionCreator: AC
+  actionCreator: AC,
 ): Matchable<AC>;
 
 export function withMatcher<
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  AC extends (...args: any[]) => AnyAction & { type: string }
+  AC extends (...args: any[]) => AnyAction & { type: string },
 >(actionCreator: AC): Matchable<AC>;
 
 // eslint-disable-next-line @typescript-eslint/no-unsafe-function-type
@@ -36,12 +36,12 @@ export type Action<T> = {
 
 export function createAction<T extends string, P>(
   type: T,
-  payload: P
+  payload: P,
 ): ActionWithPayload<T, P>;
 
 export function createAction<T extends string>(
   type: T,
-  payload: void
+  payload: void,
 ): Action<T>;
 
 export function createAction<T extends string, P>(type: T, payload: P) {

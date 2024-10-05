@@ -1,21 +1,21 @@
-import { Handler } from "@netlify/functions";
-import Stripe from "stripe";
+import { Handler } from '@netlify/functions';
+import Stripe from 'stripe';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string);
 
 const handler: Handler = async (event) => {
   try {
-    if (event.httpMethod !== "POST") {
+    if (event.httpMethod !== 'POST') {
       return {
         statusCode: 405,
-        body: JSON.stringify({ message: "Method Not Allowed" }),
+        body: JSON.stringify({ message: 'Method Not Allowed' }),
       };
     }
 
     if (!event.body) {
       return {
         statusCode: 400,
-        body: JSON.stringify({ message: "Missing request body" }),
+        body: JSON.stringify({ message: 'Missing request body' }),
       };
     }
 
@@ -23,8 +23,8 @@ const handler: Handler = async (event) => {
 
     const paymentIntent = await stripe.paymentIntents.create({
       amount,
-      currency: "usd",
-      payment_method_types: ["card"],
+      currency: 'usd',
+      payment_method_types: ['card'],
     });
 
     return {
@@ -36,7 +36,7 @@ const handler: Handler = async (event) => {
 
     return {
       statusCode: 500,
-      body: JSON.stringify({ message: "Internal Server Error" }),
+      body: JSON.stringify({ message: 'Internal Server Error' }),
     };
   }
 };

@@ -1,7 +1,7 @@
-import { takeLatest, put, all, call } from "redux-saga/effects";
-import { User } from "firebase/auth";
+import { takeLatest, put, all, call } from 'redux-saga/effects';
+import { User } from 'firebase/auth';
 
-import { USER_ACTION_TYPES } from "./user.types";
+import { USER_ACTION_TYPES } from './user.types';
 
 import {
   signInSuccess,
@@ -13,7 +13,7 @@ import {
   EmailSignInStart,
   SignUpStart,
   SignUpSuccess,
-} from "./user.action";
+} from './user.action';
 
 import {
   getCurrentUser,
@@ -24,20 +24,20 @@ import {
   signOutUser,
   AdditionalInformation,
   UserData,
-} from "../../utils/firebase/firebase.utils";
+} from '../../utils/firebase/firebase.utils';
 
-import { DocumentSnapshot } from "firebase/firestore";
+import { DocumentSnapshot } from 'firebase/firestore';
 
 export function* getSnapshotFromUserAuth(
   userAuth: User,
-  additinalDetails?: AdditionalInformation
+  additinalDetails?: AdditionalInformation,
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
 ): Generator<any, void, DocumentSnapshot> {
   try {
     const userSnapshot = yield call(
       createUserDocumentFromAuth,
       userAuth,
-      additinalDetails
+      additinalDetails,
     );
 
     if (userSnapshot) {
@@ -46,10 +46,10 @@ export function* getSnapshotFromUserAuth(
         yield put(
           signInSuccess({ id: userSnapshot.id, ...userData } as UserData & {
             id: string;
-          })
+          }),
         );
       } else {
-        throw new Error("User data is undefined");
+        throw new Error('User data is undefined');
       }
     }
   } catch (error) {
@@ -74,7 +74,7 @@ EmailSignInStart): Generator<any, void, any> {
     const userCredential = yield call(
       signInAuthUserWithEmailAndPassword,
       email,
-      password
+      password,
     );
 
     if (userCredential) {
@@ -105,7 +105,7 @@ SignUpStart): Generator<any, void, any> {
     const userCredential = yield call(
       createAuthUserWithEmailAndPassword,
       email,
-      password
+      password,
     );
     if (userCredential) {
       const { user } = userCredential;

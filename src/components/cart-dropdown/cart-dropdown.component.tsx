@@ -1,29 +1,29 @@
-import { useCallback } from "react";
-import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useCallback } from 'react';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
-import CartItem from "../cart-item/cart-item.component";
-import Button from "../button/button.component";
-import { selectCartItems } from "../../store/cart/cart.selector";
+import CartItem from '../cart-item/cart-item.component';
+import Button from '../button/button.component';
+import { selectCartItems } from '../../store/cart/cart.selector';
 
 import {
   CartDropdownContainer,
   EmptyMessage,
   CartItems,
-} from "./cart-dropdown.styles";
+} from './cart-dropdown.styles';
 
 const CartDropDown = () => {
   const cartItems = useSelector(selectCartItems);
   const navigate = useNavigate();
 
   const goToCheckoutHandler = useCallback(() => {
-    navigate("/checkout");
+    navigate('/checkout');
   }, []);
 
   return (
     <CartDropdownContainer>
       <CartItems>
-        {" "}
+        {' '}
         {cartItems.length ? (
           cartItems.map((item) => <CartItem key={item.id} cartItem={item} />)
         ) : (

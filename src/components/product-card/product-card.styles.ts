@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { devices } from "../../breackpoints";
+import styled from 'styled-components';
+import { devices } from '../../breackpoints';
 
 export const ProductCartContainer = styled.div`
 

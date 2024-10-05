@@ -1,7 +1,7 @@
-import styled from "styled-components";
-import { Link } from "react-router-dom";
-import { devices } from "../../breackpoints";
-import AsapLogo from "../../assets/asap.svg?react";
+import styled from 'styled-components';
+import { Link } from 'react-router-dom';
+import { devices } from '../../breackpoints';
+import AsapLogo from '../../assets/asap.svg?react';
 
 export const NavigationContainer = styled.div`
   @media ${devices.mobileS} {
