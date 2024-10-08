@@ -42,6 +42,9 @@ export const userReducer = (
     case USER_ACTION_TYPES.SIGN_OUT_FAILED:
       return { ...state, error: action.payload, isLoading: false };
 
+    case USER_ACTION_TYPES.CHECK_USER_SESSION:
+      return { ...state, isLoading: true };
+
     default:
       return state;
   }

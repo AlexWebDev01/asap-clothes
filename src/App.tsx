@@ -1,9 +1,10 @@
 import { useEffect, lazy, Suspense } from 'react';
-import { useDispatch } from 'react-redux';
-import { Routes, Route } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 
 import Spinner from './components/spinner/spinner.component';
 import { checkUserSession } from './store/user/user.action';
+import { RootState } from './store/store';
 
 const Home = lazy(() => import('./routes/home/home.component'));
 const Authentication = lazy(
@@ -18,10 +19,18 @@ const Payment = lazy(() => import('./routes/payment/payment.component'));
 
 const App = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { currentUser } = useSelector((state: RootState) => state.user);
 
   useEffect(() => {
     dispatch(checkUserSession());
   }, []);
+
+  useEffect(() => {
+    if (!currentUser) {
+      navigate('/auth');
+    }
+  }, [currentUser]);
 
   return (
     <Suspense fallback={<Spinner />}>
