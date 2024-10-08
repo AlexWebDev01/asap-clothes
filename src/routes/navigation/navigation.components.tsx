@@ -1,5 +1,5 @@
-import { Fragment } from 'react';
-import { Outlet } from 'react-router-dom';
+import { Fragment, useEffect } from 'react';
+import { Outlet, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
 import CartIcon from '../../components/cart-icon/cart-icon.component';
@@ -19,8 +19,15 @@ import {
 
 const Navigation = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const currentUser = useSelector(selectCurrentUser);
   const isCartOpen = useSelector(selectIsCartOpen);
+
+  useEffect(() => {
+    if (!currentUser) {
+      navigate('/auth');
+    }
+  }, [currentUser]);
 
   const signOutUser = () => dispatch(signOutStart());
 

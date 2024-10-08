@@ -37,7 +37,7 @@ const SignInForm = () => {
     if (currentUser) {
       navigate('/');
     }
-  });
+  }, [currentUser]);
 
   const resetFormFields = () => {
     setFormFields(defaultFormFields);
