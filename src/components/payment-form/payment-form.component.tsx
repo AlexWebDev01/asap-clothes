@@ -8,7 +8,10 @@ import {
 import { StripeCardElement } from '@stripe/stripe-js';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { selectCartTotal } from '../../store/cart/cart.selector';
+import {
+  selectCartItems,
+  selectCartTotal,
+} from '../../store/cart/cart.selector';
 import { selectCurrentUser } from '../../store/user/user.selector';
 
 import { BUTTON_TYPE_CLASSES } from '../button/button.component';
@@ -24,6 +27,7 @@ import {
 } from './payment-form.styles';
 import { useNavigate } from 'react-router-dom';
 import { setCartItems } from '../../store/cart/cart.action';
+import { setPurchasedItems } from '../../store/purchased-items/purchased-items.action';
 
 const ifValidCardElement = (
   card: StripeCardElement | null,
@@ -34,6 +38,7 @@ const PaymentForm = () => {
   const navigate = useNavigate();
   const stripe = useStripe();
   const elements = useElements();
+  const cartItems = useSelector(selectCartItems);
   const cartTotal = useSelector(selectCartTotal);
   const currentUser = useSelector(selectCurrentUser);
   const [isProcessingPayment, setIsProcessingPayment] = useState(false);
@@ -108,8 +113,9 @@ const PaymentForm = () => {
       }
 
       setIsProcessingPayment(false);
+      dispatch(setPurchasedItems(cartItems));
       dispatch(setCartItems([]));
-      navigate('/');
+      navigate('/success');
     } catch (error) {
       console.log((error as Error).message);
       setIsProcessingPayment(false);

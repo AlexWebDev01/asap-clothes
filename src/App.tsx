@@ -5,6 +5,7 @@ import { Routes, Route, useNavigate } from 'react-router-dom';
 import Spinner from './components/spinner/spinner.component';
 import { checkUserSession } from './store/user/user.action';
 import { RootState } from './store/store';
+import { Success } from './routes/success/success.component';
 
 const Home = lazy(() => import('./routes/home/home.component'));
 const Authentication = lazy(
@@ -41,6 +42,7 @@ const App = () => {
           <Route path="auth" element={<Authentication />} />
           <Route path="checkout" element={<Checkout />} />
           <Route path="payment" element={<Payment />} />
+          <Route path="success" element={<Success />} />
         </Route>
       </Routes>
     </Suspense>

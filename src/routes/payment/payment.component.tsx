@@ -13,7 +13,7 @@ const Payment = () => {
     if (cartItems.length === 0) {
       navigate('/shop');
     }
-  }, [cartItems, navigate]);
+  }, []);
 
   if (cartItems.length > 0) {
     return <PaymentForm />;
