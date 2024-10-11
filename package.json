@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "start": "vite preview",
-    "start:dev": "vite dev",
+    "start:dev": "netlify dev",
     "build": "vite build",
     "lint": "eslint \"src/**/*.{js,jsx,ts,tsx}\" --fix",
     "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,css,scss,md,json,html}\"",
@@ -17,6 +17,7 @@
     "@stripe/stripe-js": "^4.6.0",
     "dotenv": "^16.4.5",
     "firebase": "^10.14.0",
+    "netlify-cli": "^17.37.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-redux": "^8.1.3",
