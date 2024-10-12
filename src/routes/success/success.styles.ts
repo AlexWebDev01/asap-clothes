@@ -11,6 +11,7 @@ export const SuccessLayout = styled.div`
   justify-content: center;
   align-items: center;
   margin: 0 auto;
+  padding-bottom: 50px;
 `;
 
 export const Total = styled.span`
