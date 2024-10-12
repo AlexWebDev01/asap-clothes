@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { devices } from '../../breackpoints';
+import { devices } from '../../../breackpoints';
 
 type BackgroundImageProps = {
   imageUrl: string;

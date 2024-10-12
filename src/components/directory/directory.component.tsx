@@ -1,6 +1,6 @@
 import { Key } from 'react';
 
-import DirectoryItem from '../directory-item/directory-item.component';
+import DirectoryItem from '../item/directory-item/directory-item.component';
 
 import { DirectoryContainer } from './directory.styles';
 

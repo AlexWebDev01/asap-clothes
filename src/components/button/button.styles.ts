@@ -63,11 +63,13 @@ export const InvertedButton = styled(BaseButton)`
 
   &:disabled {
     background-color: #999;
+    cursor: auto;
+    border: none;
 
     &:hover {
       background-color: #999;
       color: black;
-      border: 1px solid black;
+      cursor: auto;
     }
   }
 `;

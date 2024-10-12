@@ -2,12 +2,12 @@ import { FC, memo } from 'react';
 
 import { useSelector, useDispatch } from 'react-redux';
 
-import { selectCartItems } from '../../store/cart/cart.selector';
+import { selectCartItems } from '../../../store/cart/cart.selector';
 import {
   addItemToCart,
   clearItemFromCart,
   removeItemFromCart,
-} from '../../store/cart/cart.action';
+} from '../../../store/cart/cart.action';
 
 import {
   CheckoutItemContainer,
@@ -19,7 +19,7 @@ import {
   RemoveButton,
 } from './checkout-item.styles';
 
-import { CartItem } from '../../store/cart/cart.types';
+import { CartItem } from '../../../store/cart/cart.types';
 
 type CartItemProps = {
   cartItem: CartItem;

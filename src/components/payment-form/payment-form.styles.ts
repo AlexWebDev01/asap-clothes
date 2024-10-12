@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import Button from '../button/button.component';
-import { Total } from '../../routes/checkout/checkout.styles';
+import { Total } from '../item/item-list-footer/item-list-footer.styles';
 
 export const PaymentFormContainer = styled.div`
   display: flex;

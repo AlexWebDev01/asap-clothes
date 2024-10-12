@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-import { DirectoryCategory } from '../directory/directory.component';
+import { DirectoryCategory } from '../../directory/directory.component';
 
 import { useNavigate } from 'react-router-dom';
 
