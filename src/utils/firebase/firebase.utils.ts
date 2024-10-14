@@ -24,6 +24,8 @@ import {
 } from 'firebase/firestore';
 
 import { Category } from '../../store/categories/category.types';
+import { PurchasedItem } from '../../store/purchased-items/purchased-items.types';
+import { getPurchasedItemsFromLocalStorage } from './purchased-items.utils';
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
@@ -88,6 +90,7 @@ export type UserData = {
   createdAt: Date;
   displayName: string;
   email: string;
+  purchaseHistory: PurchasedItem[];
 };
 
 export const createUserDocumentFromAuth = async (
@@ -103,12 +106,14 @@ export const createUserDocumentFromAuth = async (
   if (!userSnapshot.exists()) {
     const { displayName, email } = userAuth;
     const createdAt = new Date();
+    const purchaseHistory = getPurchasedItemsFromLocalStorage();
 
     try {
       await setDoc(userDocRef, {
         displayName,
         email,
         createdAt,
+        purchaseHistory,
         ...additionalInformation,
       });
     } catch (error) {
@@ -155,7 +160,13 @@ export const getCurrentUser = (): Promise<User | null> => {
   });
 };
 
-export const AUTH_ERROR_MESSAGES = Object.freeze({
+export const SIGN_IN_ERROR_MESSAGES = Object.freeze({
   'auth/user-not-found': 'Provided email is not registered',
   'auth/wrong-password': 'Provided credentials are invalid',
+});
+
+export const SIGN_UP_ERROR_MESSAGES = Object.freeze({
+  'auth/email-already-in-use': 'Provided email is already in use',
+  'auth/weak-password': 'Password should be at least 6 characters long',
+  'auth/passwords-dont-match': 'Passwords do not match',
 });

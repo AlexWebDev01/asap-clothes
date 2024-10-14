@@ -16,7 +16,7 @@ import {
 } from './sign-in-form.styles';
 import { useNavigate } from 'react-router-dom';
 import { RootState } from '../../store/store';
-import { AUTH_ERROR_MESSAGES } from '../../utils/firebase/firebase.utils';
+import { SIGN_IN_ERROR_MESSAGES } from '../../utils/firebase/firebase.utils';
 import { FirebaseError } from 'firebase/app';
 
 const defaultFormFields = {
@@ -98,9 +98,12 @@ const SignInForm = () => {
         </ButtonContainer>
         {error && (
           <ErrorContainer>
-            {AUTH_ERROR_MESSAGES[
-              (error as FirebaseError).code as keyof typeof AUTH_ERROR_MESSAGES
-            ] ?? 'Something went wrong'}
+            {
+              SIGN_IN_ERROR_MESSAGES[
+                (error as FirebaseError)
+                  .code as keyof typeof SIGN_IN_ERROR_MESSAGES
+              ]
+            }
           </ErrorContainer>
         )}
       </form>

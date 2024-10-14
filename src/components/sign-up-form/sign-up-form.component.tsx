@@ -1,13 +1,16 @@
 import { useState, FormEvent, ChangeEvent } from 'react';
-import { AuthError, AuthErrorCodes } from 'firebase/auth';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import FormInput from '../form-input/form-input.components';
 import Button from '../button/button.component';
 
-import { signUpStart } from '../../store/user/user.action';
+import { signUpFailed, signUpStart } from '../../store/user/user.action';
 
 import { SignUpContainer } from './sign-up-form.styles';
+import { SIGN_UP_ERROR_MESSAGES } from '../../utils/firebase/firebase.utils';
+import { RootState } from '../../store/store';
+import { FirebaseError } from 'firebase/app';
+import { ErrorContainer } from '../sign-in-form/sign-in-form.styles';
 
 const defaultFormFields = {
   displayName: '',
@@ -20,6 +23,7 @@ const SignUpForm = () => {
   const dispatch = useDispatch();
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { displayName, email, password, confirmPassword } = formFields;
+  const { error } = useSelector((state: RootState) => state.user);
 
   const resetFormFields = () => {
     setFormFields(defaultFormFields);
@@ -27,8 +31,14 @@ const SignUpForm = () => {
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
     if (password !== confirmPassword) {
-      alert('passwords do not match');
+      dispatch(
+        signUpFailed(
+          new FirebaseError('auth/passwords-dont-match', 'custom error'),
+        ),
+      );
+
       return;
     }
 
@@ -36,11 +46,7 @@ const SignUpForm = () => {
       dispatch(signUpStart(email, password, displayName));
       resetFormFields();
     } catch (error) {
-      if ((error as AuthError).code === AuthErrorCodes.EMAIL_EXISTS) {
-        alert('Cannot create user, email already in use');
-      } else {
-        console.log('user creation', error);
-      }
+      console.log('user sign up failed', error);
     }
   };
 
@@ -92,6 +98,12 @@ const SignUpForm = () => {
         />
         <Button type="submit">Sign Up</Button>
       </form>
+      <ErrorContainer>
+        {error &&
+          SIGN_UP_ERROR_MESSAGES[
+            (error as FirebaseError).code as keyof typeof SIGN_UP_ERROR_MESSAGES
+          ]}
+      </ErrorContainer>
     </SignUpContainer>
   );
 };
