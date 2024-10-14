@@ -4,4 +4,6 @@ export enum PURCHASED_ITEMS_ACTION_TYPES {
   SET_CART_ITEMS = 'purchasedItems/SET_PURCHASED_ITEMS',
 }
 
-export type PurchasedItem = CartItem;
+export type PurchasedItem = CartItem & {
+  purchaseDate: Date;
+};
