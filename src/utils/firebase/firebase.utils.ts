@@ -21,10 +21,12 @@ import {
   query,
   getDocs,
   QueryDocumentSnapshot,
+  addDoc,
 } from 'firebase/firestore';
 
 import { Category } from '../../store/categories/category.types';
 import { UUID } from 'crypto';
+import { PurchasedItem } from '../../store/purchased-items/purchased-items.types';
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
@@ -157,6 +159,27 @@ export const getCurrentUser = (): Promise<User | null> => {
       reject,
     );
   });
+};
+
+export const createUserPurchaseDocument = async (
+  user: UserData | null,
+  purchase: PurchasedItem[],
+  purchaseTotal: number,
+) => {
+  try {
+    const purchasesCollectionRef = collection(dataBase, 'purchases');
+
+    await addDoc(purchasesCollectionRef, {
+      userUuid: user?.uuid ?? null,
+      purchase,
+      purchaseTotal,
+      createdAt: new Date().toUTCString(),
+    });
+
+    console.log('User purchase document created');
+  } catch (error) {
+    console.log('Error creating user purchase document', error);
+  }
 };
 
 export const SIGN_IN_ERROR_MESSAGES = Object.freeze({

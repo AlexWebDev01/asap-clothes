@@ -29,6 +29,7 @@ import { useNavigate } from 'react-router-dom';
 import { setCartItems } from '../../store/cart/cart.action';
 import { setPurchasedItems } from '../../store/purchased-items/purchased-items.action';
 import { PurchasedItem } from '../../store/purchased-items/purchased-items.types';
+import { createUserPurchaseDocument } from '../../utils/firebase/firebase.utils';
 
 const ifValidCardElement = (
   card: StripeCardElement | null,
@@ -113,12 +114,14 @@ const PaymentForm = () => {
         throw new Error('Payment failed');
       }
 
-      setIsProcessingPayment(false);
-
       const purchasedItems: PurchasedItem[] = cartItems.map((item) => ({
         ...item,
         purchaseDate: new Date(),
       }));
+
+      await createUserPurchaseDocument(currentUser, purchasedItems, cartTotal);
+
+      setIsProcessingPayment(false);
 
       dispatch(setPurchasedItems(purchasedItems));
       dispatch(setCartItems([]));
