@@ -24,8 +24,7 @@ import {
 } from 'firebase/firestore';
 
 import { Category } from '../../store/categories/category.types';
-import { PurchasedItem } from '../../store/purchased-items/purchased-items.types';
-import { getPurchasedItemsFromLocalStorage } from './purchased-items.utils';
+import { UUID } from 'crypto';
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
@@ -87,37 +86,37 @@ export type AdditionalInformation = {
 };
 
 export type UserData = {
+  uuid: UUID;
   createdAt: Date;
   displayName: string;
   email: string;
-  purchaseHistory: PurchasedItem[];
 };
 
 export const createUserDocumentFromAuth = async (
   userAuth: User,
   additionalInformation = {} as AdditionalInformation,
 ): Promise<void | QueryDocumentSnapshot<UserData>> => {
-  if (!userAuth) return;
+  if (!userAuth) throw new Error('No user authentication object provided');
 
   const userDocRef = doc(dataBase, 'users', userAuth.uid);
-
-  const userSnapshot = await getDoc(userDocRef);
+  let userSnapshot = await getDoc(userDocRef);
 
   if (!userSnapshot.exists()) {
     const { displayName, email } = userAuth;
-    const createdAt = new Date();
-    const purchaseHistory = getPurchasedItemsFromLocalStorage();
+    const createdAt = new Date().toUTCString();
 
     try {
       await setDoc(userDocRef, {
+        uuid: crypto.randomUUID(),
         displayName,
         email,
         createdAt,
-        purchaseHistory,
         ...additionalInformation,
       });
+
+      userSnapshot = await getDoc(userDocRef);
     } catch (error) {
-      console.log('error creating the user', error);
+      console.log('Error creating the user', error);
     }
   }
 

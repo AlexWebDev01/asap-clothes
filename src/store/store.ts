@@ -25,7 +25,7 @@ type ExtendedPersistConfig = PersistConfig<RootState> & {
 const persistConfig: ExtendedPersistConfig = {
   key: 'root',
   storage, //= storage: storage,
-  whitelist: ['cart'], //string with types that you want to persist (in rootReducer const)
+  whitelist: ['cart', 'purchasedItems'], //string with types that you want to persist (in rootReducer const)
   //if you don't want to persist some states - change 'whitelist' to 'backlist'
 };
 

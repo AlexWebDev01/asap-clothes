@@ -11,7 +11,7 @@ export type UserState = {
 
 const INITIAL_STATE: UserState = {
   currentUser: null,
-  isLoading: false,
+  isLoading: true,
   error: null,
 };
 
@@ -43,6 +43,7 @@ export const userReducer = (
       return { ...state, error: action.payload, isLoading: false };
 
     case USER_ACTION_TYPES.CHECK_USER_SESSION:
+    case USER_ACTION_TYPES.SET_CURRENT_USER:
       return { ...state, isLoading: true };
 
     default:

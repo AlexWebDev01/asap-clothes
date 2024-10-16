@@ -29,7 +29,6 @@ import { useNavigate } from 'react-router-dom';
 import { setCartItems } from '../../store/cart/cart.action';
 import { setPurchasedItems } from '../../store/purchased-items/purchased-items.action';
 import { PurchasedItem } from '../../store/purchased-items/purchased-items.types';
-import { getPurchasedItemsFromLocalStorage } from '../../utils/firebase/purchased-items.utils';
 
 const ifValidCardElement = (
   card: StripeCardElement | null,
@@ -121,13 +120,6 @@ const PaymentForm = () => {
         purchaseDate: new Date(),
       }));
 
-      const allPurchasedItems = getPurchasedItemsFromLocalStorage();
-      const merged = [...allPurchasedItems, ...purchasedItems];
-      console.log('merged: ', merged);
-      localStorage.setItem(
-        'purchasedItems',
-        JSON.stringify([...allPurchasedItems, ...purchasedItems]),
-      );
       dispatch(setPurchasedItems(purchasedItems));
       dispatch(setCartItems([]));
       navigate('/success');

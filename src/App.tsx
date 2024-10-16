@@ -21,17 +21,19 @@ const Payment = lazy(() => import('./routes/payment/payment.component'));
 const App = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { currentUser } = useSelector((state: RootState) => state.user);
+  const { currentUser, isLoading } = useSelector(
+    (state: RootState) => state.user,
+  );
 
   useEffect(() => {
     dispatch(checkUserSession());
   }, []);
 
   useEffect(() => {
-    if (!currentUser) {
+    if (!currentUser && !isLoading) {
       navigate('/auth');
     }
-  }, [currentUser]);
+  }, [currentUser, isLoading]);
 
   return (
     <Suspense fallback={<Spinner />}>

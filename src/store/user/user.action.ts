@@ -34,7 +34,11 @@ export type SignInSuccess = ActionWithPayload<
 
 export type SignUpStart = ActionWithPayload<
   USER_ACTION_TYPES.SIGN_UP_START,
-  { email: string; password: string; displayName: string }
+  {
+    email: string;
+    password: string;
+    displayName: string;
+  }
 >;
 
 export type SignInFailed = ActionWithPayload<
@@ -44,7 +48,7 @@ export type SignInFailed = ActionWithPayload<
 
 export type SignUpSuccess = ActionWithPayload<
   USER_ACTION_TYPES.SIGN_UP_SUCCESS,
-  { user: User; additinalDetails: AdditionalInformation }
+  { user: User; additionalDetails: AdditionalInformation }
 >;
 
 export type SignUpFailed = ActionWithPayload<
@@ -99,8 +103,11 @@ export const signUpStart = withMatcher(
 );
 
 export const signUpSuccess = withMatcher(
-  (user: User, additinalDetails: AdditionalInformation): SignUpSuccess =>
-    createAction(USER_ACTION_TYPES.SIGN_UP_SUCCESS, { user, additinalDetails }),
+  (user: User, additionalDetails: AdditionalInformation): SignUpSuccess =>
+    createAction(USER_ACTION_TYPES.SIGN_UP_SUCCESS, {
+      user,
+      additionalDetails,
+    }),
 );
 
 export const signUpFailed = withMatcher(

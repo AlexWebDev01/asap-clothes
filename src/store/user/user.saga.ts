@@ -27,14 +27,14 @@ import {
 } from '../../utils/firebase/firebase.utils';
 
 import { DocumentSnapshot } from 'firebase/firestore';
+import { SagaIterator } from 'redux-saga';
 
 export function* getSnapshotFromUserAuth(
   userAuth: User,
   additinalDetails?: AdditionalInformation,
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-): Generator<any, void, DocumentSnapshot> {
+): SagaIterator {
   try {
-    const userSnapshot = yield call(
+    const userSnapshot: DocumentSnapshot<UserData> = yield call(
       createUserDocumentFromAuth,
       userAuth,
       additinalDetails,
@@ -126,9 +126,9 @@ export function* signOut() {
 }
 
 export function* signInAfterSignUp({
-  payload: { user, additinalDetails },
+  payload: { user, additionalDetails },
 }: SignUpSuccess) {
-  yield call(getSnapshotFromUserAuth, user, additinalDetails);
+  yield call(getSnapshotFromUserAuth, user, additionalDetails);
 }
 
 export function* onGoogleSignInStart() {
