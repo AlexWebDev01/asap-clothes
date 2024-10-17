@@ -6,6 +6,7 @@ import Spinner from './components/spinner/spinner.component';
 import { checkUserSession } from './store/user/user.action';
 import { RootState } from './store/store';
 import { Success } from './routes/success/success.component';
+import { History } from './routes/history/history.component';
 
 const Home = lazy(() => import('./routes/home/home.component'));
 const Authentication = lazy(
@@ -40,11 +41,12 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Navigation />}>
           <Route index element={<Home />} />
-          <Route path="shop/*" element={<Shop />} />
           <Route path="auth" element={<Authentication />} />
+          <Route path="shop/*" element={<Shop />} />
           <Route path="checkout" element={<Checkout />} />
           <Route path="payment" element={<Payment />} />
           <Route path="success" element={<Success />} />
+          <Route path="history" element={<History />} />
         </Route>
       </Routes>
     </Suspense>

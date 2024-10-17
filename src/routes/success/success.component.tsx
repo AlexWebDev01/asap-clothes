@@ -3,9 +3,11 @@ import {
   selectPurchasedItems,
   selectPurchasedItemsTotal,
 } from '../../store/purchased-items/purchased-items.selector';
+
 import PurchasedItem from '../../components/item/purchased-item/purchased-item.component';
-import { Heading, SuccessLayout, Total } from './success.styles';
 import { ItemListHeader } from '../../components/item/item-list-header/item-list-header.component';
+
+import { Heading, SuccessLayout, Total } from './success.styles';
 
 export const Success = () => {
   const purchasedItems = useSelector(selectPurchasedItems);

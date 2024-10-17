@@ -22,11 +22,13 @@ import {
   getDocs,
   QueryDocumentSnapshot,
   addDoc,
+  where,
 } from 'firebase/firestore';
 
 import { Category } from '../../store/categories/category.types';
 import { UUID } from 'crypto';
 import { PurchasedItem } from '../../store/purchased-items/purchased-items.types';
+import { Order } from '../../components/purchase/purchase.interface';
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
@@ -180,6 +182,29 @@ export const createUserPurchaseDocument = async (
   } catch (error) {
     console.log('Error creating user purchase document', error);
   }
+};
+
+export const getCurrentUserPurchaseHistory = async (
+  currentUser: UserData,
+): Promise<Order[]> => {
+  if (!currentUser) return [];
+
+  const purchasesCollectionRef = collection(dataBase, 'purchases');
+  const q = query(
+    purchasesCollectionRef,
+    where('userUuid', '==', currentUser.uuid),
+  );
+  const querySnapshot = await getDocs(q);
+
+  const purchaseHistory = querySnapshot.docs.map(
+    (docSnapshot) => docSnapshot.data() as Order,
+  );
+
+  const sortedPurchaseHistory = purchaseHistory.sort(
+    (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
+  );
+
+  return sortedPurchaseHistory;
 };
 
 export const SIGN_IN_ERROR_MESSAGES = Object.freeze({

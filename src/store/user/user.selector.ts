@@ -10,3 +10,8 @@ export const selectCurrentUser = createSelector(
   selectUserReducer,
   (user) => user.currentUser,
 );
+
+export const selectPurchaseHistory = createSelector(
+  selectUserReducer,
+  (user) => user.purchaseHistory,
+);

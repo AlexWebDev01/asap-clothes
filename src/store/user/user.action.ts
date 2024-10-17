@@ -10,6 +10,7 @@ import {
   UserData,
   AdditionalInformation,
 } from '../../utils/firebase/firebase.utils';
+import { Order } from '../../components/purchase/purchase.interface';
 
 export type CheckUserSession = Action<USER_ACTION_TYPES.CHECK_USER_SESSION>;
 
@@ -126,4 +127,24 @@ export const signOutSuccess = withMatcher(
 export const signOutFailed = withMatcher(
   (error: Error): SignOutFailed =>
     createAction(USER_ACTION_TYPES.SIGN_OUT_FAILED, error),
+);
+
+export const fetchPurchaseHistorySuccess = withMatcher(
+  (purchaseHistory: Order[]) =>
+    createAction(
+      USER_ACTION_TYPES.FETCH_PURCHASE_HISTORY_SUCCESS,
+      purchaseHistory,
+    ),
+);
+
+export const fetchPurchaseHistoryFailure = withMatcher((error: Error) =>
+  createAction(USER_ACTION_TYPES.FETCH_PURCHASE_HISTORY_FAILURE, error),
+);
+
+export const paymentSuccess = withMatcher(() =>
+  createAction(USER_ACTION_TYPES.PAYMENT_SUCCESS),
+);
+
+export const paymentFailure = withMatcher((error: Error) =>
+  createAction(USER_ACTION_TYPES.PAYMENT_FAILURE, error),
 );

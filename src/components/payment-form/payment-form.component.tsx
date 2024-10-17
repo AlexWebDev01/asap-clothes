@@ -30,6 +30,10 @@ import { setCartItems } from '../../store/cart/cart.action';
 import { setPurchasedItems } from '../../store/purchased-items/purchased-items.action';
 import { PurchasedItem } from '../../store/purchased-items/purchased-items.types';
 import { createUserPurchaseDocument } from '../../utils/firebase/firebase.utils';
+import {
+  paymentFailure,
+  paymentSuccess,
+} from '../../store/user/user.action';
 
 const ifValidCardElement = (
   card: StripeCardElement | null,
@@ -111,7 +115,11 @@ const PaymentForm = () => {
       }
 
       if (paymentResult.paymentIntent.status !== 'succeeded') {
-        throw new Error('Payment failed');
+        dispatch(
+          paymentFailure(
+            new Error('Payment intent error: ', paymentResult.error),
+          ),
+        );
       }
 
       const purchasedItems: PurchasedItem[] = cartItems.map((item) => ({
@@ -122,9 +130,9 @@ const PaymentForm = () => {
       await createUserPurchaseDocument(currentUser, purchasedItems, cartTotal);
 
       setIsProcessingPayment(false);
-
       dispatch(setPurchasedItems(purchasedItems));
       dispatch(setCartItems([]));
+      dispatch(paymentSuccess());
       navigate('/success');
     } catch (error) {
       console.log((error as Error).message);

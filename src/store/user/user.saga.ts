@@ -1,4 +1,4 @@
-import { takeLatest, put, all, call } from 'redux-saga/effects';
+import { takeLatest, put, all, call, select } from 'redux-saga/effects';
 import { User } from 'firebase/auth';
 
 import { USER_ACTION_TYPES } from './user.types';
@@ -13,6 +13,8 @@ import {
   EmailSignInStart,
   SignUpStart,
   SignUpSuccess,
+  fetchPurchaseHistorySuccess,
+  fetchPurchaseHistoryFailure,
 } from './user.action';
 
 import {
@@ -24,10 +26,13 @@ import {
   signOutUser,
   AdditionalInformation,
   UserData,
+  getCurrentUserPurchaseHistory,
 } from '../../utils/firebase/firebase.utils';
 
 import { DocumentSnapshot } from 'firebase/firestore';
 import { SagaIterator } from 'redux-saga';
+import { Order } from '../../components/purchase/purchase.interface';
+import { selectCurrentUser } from './user.selector';
 
 export function* getSnapshotFromUserAuth(
   userAuth: User,
@@ -131,6 +136,24 @@ export function* signInAfterSignUp({
   yield call(getSnapshotFromUserAuth, user, additionalDetails);
 }
 
+function* fetchPurchaseHistory() {
+  try {
+    const currentUser: UserData | null = yield select(selectCurrentUser);
+
+    if (!currentUser) {
+      throw new Error('User is not authenticated');
+    }
+
+    const purchaseHistory: Order[] = yield call(
+      getCurrentUserPurchaseHistory,
+      currentUser,
+    );
+    yield put(fetchPurchaseHistorySuccess(purchaseHistory));
+  } catch (error) {
+    yield put(fetchPurchaseHistoryFailure(error as Error));
+  }
+}
+
 export function* onGoogleSignInStart() {
   yield takeLatest(USER_ACTION_TYPES.GOOGLE_SIGN_IN_START, signInWithGoogle);
 }
@@ -155,6 +178,14 @@ export function* onSignOutStart() {
   yield takeLatest(USER_ACTION_TYPES.SIGN_OUT_START, signOut);
 }
 
+export function* onSignInSuccess() {
+  yield takeLatest(USER_ACTION_TYPES.SIGN_IN_SUCCESS, fetchPurchaseHistory);
+}
+
+export function* onPaymentSuccess() {
+  yield takeLatest(USER_ACTION_TYPES.PAYMENT_SUCCESS, fetchPurchaseHistory);
+}
+
 export function* userSagas() {
   yield all([
     call(onCheckUserSession),
@@ -163,5 +194,7 @@ export function* userSagas() {
     call(onSignUpStart),
     call(onSignUpSuccess),
     call(onSignOutStart),
+    call(onSignInSuccess),
+    call(onPaymentSuccess),
   ]);
 }
