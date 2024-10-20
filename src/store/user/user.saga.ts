@@ -140,9 +140,7 @@ function* fetchPurchaseHistory() {
   try {
     const currentUser: UserData | null = yield select(selectCurrentUser);
 
-    if (!currentUser) {
-      throw new Error('User is not authenticated');
-    }
+    if (!currentUser) return;
 
     const purchaseHistory: Order[] = yield call(
       getCurrentUserPurchaseHistory,
