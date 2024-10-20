@@ -30,10 +30,7 @@ import { setCartItems } from '../../store/cart/cart.action';
 import { setPurchasedItems } from '../../store/purchased-items/purchased-items.action';
 import { PurchasedItem } from '../../store/purchased-items/purchased-items.types';
 import { createUserPurchaseDocument } from '../../utils/firebase/firebase.utils';
-import {
-  paymentFailure,
-  paymentSuccess,
-} from '../../store/user/user.action';
+import { paymentFailure, paymentSuccess } from '../../store/user/user.action';
 
 const ifValidCardElement = (
   card: StripeCardElement | null,

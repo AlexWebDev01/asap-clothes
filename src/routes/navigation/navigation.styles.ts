@@ -7,7 +7,7 @@ export const NavigationContainer = styled.div`
   @media ${devices.mobileS} {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 10px;
+    margin-bottom: 30px;
   }
 
   @media ${devices.tablet} {

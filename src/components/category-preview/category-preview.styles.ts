@@ -11,12 +11,22 @@ export const CategoryPreviewContainer = styled.div`
 
   display: flex;
   flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
   margin-bottom: 30px;
+
+  @media ${devices.tablet} {
+    margin-bottom: 50px;
+  }
 `;
 
 export const Title = styled(Link)`
   @media ${devices.mobileS} {
-    margin-right: auto;
+    text-align: center;
+    margin-bottom: 15px;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-decoration: underline;
   }
 
   @media ${devices.tablet} {
@@ -29,12 +39,12 @@ export const Title = styled(Link)`
 
 export const Preview = styled.div`
   @media ${devices.mobileS} {
+    display: grid;
     grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
   }
 
   @media ${devices.tablet} {
-    display: grid;
     grid-template-columns: repeat(4, 1fr);
-    column-gap: 20px;
   }
 `;

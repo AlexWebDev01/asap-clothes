@@ -4,9 +4,14 @@ import { devices } from '../../breackpoints';
 export const ProductCartContainer = styled.div`
 
 @media ${devices.mobileS} {
+  width: 140px;
   height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
   img {
+  width: 140px;
     height: 150px;
   }
 
@@ -20,9 +25,10 @@ export const ProductCartContainer = styled.div`
     display: flex;
     padding: 0;
     font-size: 12px;
+    align-self: flex-start;
   }
 
- hover {
+ &:hover {
   none;
  }
 }
@@ -49,6 +55,7 @@ export const ProductCartContainer = styled.div`
     position: absolute;
     top: 255px;
     display: none;
+    align-self: center;
   }
 
   &:hover {
@@ -66,7 +73,11 @@ export const ProductCartContainer = styled.div`
 
 export const Footer = styled.div`
   @media ${devices.mobileS} {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
     height: auto;
+    margin-bottom: 10px;
   }
 
   @media ${devices.tablet} {

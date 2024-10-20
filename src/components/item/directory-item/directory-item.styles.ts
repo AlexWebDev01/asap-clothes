@@ -72,8 +72,8 @@ export const DirectoryItemContainer = styled.div`
   @media ${devices.mobileS} {
     height: 133px;
     padding: 0 1em;
-    margin-bottom: 50px;
-    width: 50%;
+    margin-bottom: 20px;
+    width: 100%;
   }
 
   @media ${devices.tablet} {

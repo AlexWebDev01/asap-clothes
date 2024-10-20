@@ -19,7 +19,7 @@ export const PurchasedItem = ({ purchasedItem }: PurchasedItemProps) => {
       </ImageContainer>
       <BaseSpan>{name}</BaseSpan>
       <BaseSpan>{quantity}</BaseSpan>
-      <BaseSpan>{price}</BaseSpan>
+      <BaseSpan>${price}</BaseSpan>
     </PurchasedItemContainer>
   );
 };

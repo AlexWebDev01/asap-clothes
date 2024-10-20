@@ -3,9 +3,11 @@ import { devices } from '../../breackpoints';
 
 export const CategoryContainer = styled.div`
   @media ${devices.mobileS} {
+    display: grid;
     grid-template-columns: repeat(2, 1fr);
     column-gap: 10px;
-    row-gap: 15px;
+    row-gap: 30px;
+    justify-items: center;
   }
 
   @media ${devices.tablet} {

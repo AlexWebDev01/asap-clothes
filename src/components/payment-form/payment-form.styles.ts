@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import Button from '../button/button.component';
 import { Total } from '../item/item-list-footer/item-list-footer.styles';
+import { devices } from '../../breackpoints';
 
 export const PaymentFormContainer = styled.div`
   display: flex;
@@ -11,10 +12,15 @@ export const PaymentFormContainer = styled.div`
 `;
 
 export const FormContainer = styled.form`
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  min-width: 500px;
+  @media ${devices.mobileS} {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  @media ${devices.tablet} {
+    min-width: 500px;
+  }
 `;
 
 export const PaymentFormFooter = styled.div`

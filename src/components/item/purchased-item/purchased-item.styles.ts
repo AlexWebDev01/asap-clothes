@@ -1,14 +1,21 @@
 import styled from 'styled-components';
+import { devices } from '../../../breackpoints';
 
 export const PurchasedItemContainer = styled.div`
-  width: 100%;
-  display: flex;
-  min-height: 100px;
-  border-bottom: 1px solid darkgrey;
-  padding: 15px 0;
-  font-size: 20px;
-  align-items: center;
-  justify-content: space-between;
+  @media ${devices.mobileS} {
+    width: 95%;
+    display: flex;
+    min-height: 100px;
+    border-bottom: 1px solid darkgrey;
+    padding: 15px 0;
+    font-size: 20px;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  @media ${devices.tablet} {
+    width: 100%;
+  }
 `;
 export const ImageContainer = styled.div`
   width: 23%;
